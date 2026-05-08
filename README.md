@@ -25,9 +25,9 @@
 
 ### Team
 
-- **Dayoung Kil**
-- **Doeon Kim**
-- **Junyoon Lee**
+- **[Dayoung Kil](https://github.com/Dayoung-Kil)**
+- **[Doeon Kim](https://github.com/kimdoeon)**
+- **[Junyoon Lee](https://github.com/jungyoon-lee)**
 
 ---
 
