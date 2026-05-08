@@ -1,4 +1,4 @@
-# 26LPCV SSUPERPOWER 2nd
+# LPCVC 2026 Track 3: AI-Generated Image Detection on Edge Devices
 
 > 🥈 **2nd Place** — LPCVC 2026 Track 3: AI-Generated Image Detection on Edge Devices
 > 
