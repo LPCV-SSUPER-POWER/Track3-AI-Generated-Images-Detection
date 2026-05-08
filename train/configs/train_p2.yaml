@@ -1,0 +1,36 @@
+base_model: __MODEL_ROOT__/merged_p1
+train_jsonl: __RUN_ROOT__/runtime_data/datasets/data_p2/train.jsonl
+output_dir: __MODEL_ROOT__
+lora_subdir: lora_p2
+overall_head_name: overall_head.pt
+criterion_head_name: criterion_head.pt
+resolved_config_name: train_p2_resolved_config.json
+log_name: train_log_p2.json
+
+seed: 42
+device: cuda
+min_pixels: 3136
+max_pixels: 1048576
+min_image_edge: 28
+num_workers: 0
+
+lora_rank: 16
+lora_alpha: 32
+freeze_vision_tower: true
+hidden_dim: 1536
+aux_hidden: 256
+
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 1
+learning_rate: 1.0e-4
+num_train_epochs: 2
+warmup_ratio: 0.05
+
+use_overall_loss: true
+use_criterion_loss: true
+lambda_tok: 1.0
+lambda_overall: 0.1
+lambda_criterion: 0.05
+
+log_every: 20
+save_every: 500

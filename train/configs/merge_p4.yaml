@@ -1,0 +1,7 @@
+model_name_or_path: __MODEL_ROOT__/merged_p4_warmup
+adapter_name_or_path: __MODEL_ROOT__/lora_p4
+template: qwen2_vl
+finetuning_type: lora
+export_dir: __MODEL_ROOT__/merged_p4
+export_size: 5
+export_legacy_format: false

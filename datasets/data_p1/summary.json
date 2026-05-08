@@ -1,0 +1,173 @@
+{
+  "name": "data_p1",
+  "stage": "p1",
+  "source_split_dir": "<original-bundle>/annotations/data_p1",
+  "train": {
+    "count": 54007,
+    "label_counts": {
+      "fake": 27004,
+      "real": 27003
+    },
+    "assistant_tokens_approx": {
+      "min": 73,
+      "max": 91,
+      "avg": 78.28
+    },
+    "per_family": {
+      "adm": {
+        "real": 0,
+        "fake": 4497
+      },
+      "arforensics_infinity": {
+        "real": 3586,
+        "fake": 0
+      },
+      "arforensics_janus_pro": {
+        "real": 3576,
+        "fake": 0
+      },
+      "arforensics_llamagen": {
+        "real": 3588,
+        "fake": 0
+      },
+      "arforensics_open_magvit2": {
+        "real": 3577,
+        "fake": 0
+      },
+      "arforensics_rar": {
+        "real": 3406,
+        "fake": 0
+      },
+      "biggan": {
+        "real": 0,
+        "fake": 4585
+      },
+      "coco": {
+        "real": 2370,
+        "fake": 0
+      },
+      "imagenet": {
+        "real": 5495,
+        "fake": 0
+      },
+      "infinity": {
+        "real": 0,
+        "fake": 3295
+      },
+      "janus_pro": {
+        "real": 0,
+        "fake": 3397
+      },
+      "llamagen": {
+        "real": 0,
+        "fake": 3558
+      },
+      "open_magvit2": {
+        "real": 0,
+        "fake": 324
+      },
+      "rar": {
+        "real": 0,
+        "fake": 282
+      },
+      "sid_fake": {
+        "real": 0,
+        "fake": 3761
+      },
+      "sid_real": {
+        "real": 1405,
+        "fake": 0
+      },
+      "synthscars": {
+        "real": 0,
+        "fake": 3305
+      }
+    }
+  },
+  "val": {
+    "count": 5993,
+    "label_counts": {
+      "fake": 2996,
+      "real": 2997
+    },
+    "assistant_tokens_approx": {
+      "min": 73,
+      "max": 91,
+      "avg": 78.24
+    },
+    "per_family": {
+      "adm": {
+        "real": 0,
+        "fake": 499
+      },
+      "arforensics_infinity": {
+        "real": 398,
+        "fake": 0
+      },
+      "arforensics_janus_pro": {
+        "real": 397,
+        "fake": 0
+      },
+      "arforensics_llamagen": {
+        "real": 398,
+        "fake": 0
+      },
+      "arforensics_open_magvit2": {
+        "real": 397,
+        "fake": 0
+      },
+      "arforensics_rar": {
+        "real": 378,
+        "fake": 0
+      },
+      "biggan": {
+        "real": 0,
+        "fake": 509
+      },
+      "coco": {
+        "real": 263,
+        "fake": 0
+      },
+      "imagenet": {
+        "real": 610,
+        "fake": 0
+      },
+      "infinity": {
+        "real": 0,
+        "fake": 366
+      },
+      "janus_pro": {
+        "real": 0,
+        "fake": 377
+      },
+      "llamagen": {
+        "real": 0,
+        "fake": 395
+      },
+      "open_magvit2": {
+        "real": 0,
+        "fake": 35
+      },
+      "rar": {
+        "real": 0,
+        "fake": 31
+      },
+      "sid_fake": {
+        "real": 0,
+        "fake": 417
+      },
+      "sid_real": {
+        "real": 156,
+        "fake": 0
+      },
+      "synthscars": {
+        "real": 0,
+        "fake": 367
+      }
+    }
+  },
+  "val_ratio": 0.1,
+  "seed": 42,
+  "p2_max_tokens_approx": null,
+  "raw_annotation_json_modified": false
+}

@@ -1,0 +1,3 @@
+model_name_or_path: __MODEL_ROOT__/merged_p1
+adapter_name_or_path: __MODEL_ROOT__/lora_p2
+export_dir: __MODEL_ROOT__/merged_p2

@@ -1,0 +1,9 @@
+{
+  "name": "data_p3",
+  "total_selected": 10000,
+  "train": 9000,
+  "val": 1000,
+  "max_token_count": 252,
+  "min_token_count": 131,
+  "avg_token_count": 207.52
+}

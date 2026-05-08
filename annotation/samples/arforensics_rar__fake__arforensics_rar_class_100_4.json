@@ -1,0 +1,59 @@
+{
+  "per_criterion": [
+    {
+      "criterion": "Lighting & Shadows Consistency",
+      "evidence": "The lighting appears consistent with natural sunlight, but there are some inconsistencies in shadow placement.",
+      "aigc score": 1
+    },
+    {
+      "criterion": "Edges & Boundaries",
+      "evidence": "The edges of objects are sharp and well-defined, suggesting high resolution.",
+      "aigc score": 0
+    },
+    {
+      "criterion": "Texture & Resolution",
+      "evidence": "The texture is detailed and realistic, indicating high resolution.",
+      "aigc score": 0
+    },
+    {
+      "criterion": "Perspective & Spatial Relationships",
+      "evidence": "The perspective is consistent with a real-world setting, but there are slight distortions in the spatial relationships between objects.",
+      "aigc score": 1
+    },
+    {
+      "criterion": "Physical & Common Sense Logic",
+      "evidence": "The image follows physical laws and common sense logic, with no apparent contradictions.",
+      "aigc score": 0
+    },
+    {
+      "criterion": "Text & Symbols",
+      "evidence": "There are no visible texts or symbols that suggest AI generation.",
+      "aigc score": 0
+    },
+    {
+      "criterion": "Human & Biological Structure Integrity",
+      "evidence": "The human figures appear realistic with no obvious signs of AI artifacts.",
+      "aigc score": 0
+    },
+    {
+      "criterion": "Material & Object Details",
+      "evidence": "The materials and details of objects are consistent with real-world objects.",
+      "aigc score": 0
+    }
+  ],
+  "overall_likelihood": "AI-Generated",
+  "_meta": {
+    "image_id": "arforensics_rar_class_100_4",
+    "image_path": "<original-bundle>/datasets/raw/ARForensics/ARForensics/test/RAR/1_fake/class_100_4.png",
+    "label": "ai-generated",
+    "source": "arforensics_rar",
+    "generator": "rar",
+    "a_step1_responses": [
+      "",
+      "",
+      ""
+    ],
+    "elapsed_sec": 0.4,
+    "annotation_model": "Qwen2.5-VL-7B-Instruct"
+  }
+}

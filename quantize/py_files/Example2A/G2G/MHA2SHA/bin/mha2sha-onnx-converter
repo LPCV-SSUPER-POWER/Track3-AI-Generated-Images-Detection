@@ -1,0 +1,49 @@
+#!/usr/bin/env python3
+# -*- mode: python -*-
+# -----------------------------------------------------------------------------
+#
+# Qualcomm Technologies, Inc. Proprietary
+# (c) 2022-24 Qualcomm Technologies, Inc. All rights reserved.
+#
+# All data and information contained in or disclosed by this document are
+# confidential and proprietary information of Qualcomm Technologies, Inc., and
+# all rights therein are expressly reserved. By accepting this material, the
+# recipient agrees that this material and the information contained therein
+# are held in confidence and in trust and will not be used, copied, reproduced
+# in whole or in part, nor its contents revealed in any manner to others
+# without the express written permission of Qualcomm Technologies, Inc.
+#
+# -----------------------------------------------------------------------------
+
+import sys
+import traceback
+
+from mha2sha.converter import MHA2SHAConverter
+from mha2sha.utils.arg_parser import converter_arg_parser
+ 
+if __name__ == "__main__":
+    try:
+        parser = converter_arg_parser()
+        args = vars(parser.parse_args())
+        # MHA2SHAConverter takes in 'model_or_path' for the __init__.
+        # Here, we update the existing flag API from the CLI to align
+        # with what the __init__ is expecting.
+        args["model_or_path"] = args.pop("exported_model_path")
+
+        converter = MHA2SHAConverter(
+            args.pop("model_name"),
+            args.pop("sha_export_path"),
+            args.pop("model_or_path"),
+            args.pop("log_level"),
+            **args
+        )
+
+        converter.convert()
+
+    except Exception as e:
+        print(f"Encountered Error: {str(e)}", end="\n\n")
+        print('Stack Trace:')
+        traceback.print_exc()
+        sys.exit(1)
+    sys.exit(0)
+

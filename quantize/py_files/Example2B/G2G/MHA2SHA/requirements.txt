@@ -1,0 +1,15 @@
+# Common
+numpy==1.23.5
+onnxruntime_gpu==1.18.1
+onnx==1.16.1
+packaging==24.0
+tqdm==4.66.2
+safetensors==0.4.3
+rich
+
+# Linting
+lintrunner
+mypy
+ruff
+flake8
+ufmt

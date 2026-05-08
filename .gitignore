@@ -1,0 +1,89 @@
+# =============================================================
+# .gitignore — Track3-AI-Generated-Images-Detection
+# =============================================================
+
+# ----- Large external calibration data (>100MB, GitHub limit) -----
+# Download separately from https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K
+# Place at: quantize/py_files/local_data/llava_v1_5_mix665k.json
+quantize/py_files/local_data/llava_v1_5_mix665k.json
+
+# ----- Python cache -----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ----- Quantize cache + runtime -----
+.pkl_memoize_py3/
+quantize/py_files/Example2A/host_linux/exports/
+quantize/py_files/Example2A/host_linux/assets/
+quantize/py_files/Example2B/host_linux/exports/
+quantize/py_files/Example2B/host_linux/assets/
+
+# ----- Runtime artifacts (auto-created by wrappers, not committed) -----
+runtime_data/
+runs/
+results/
+submit/
+models/
+train/runs/
+train/logs/
+
+# ----- Logs -----
+*.log
+logs/
+
+# ----- Python env / build -----
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+.venv/
+venv/
+env/
+ENV/
+
+# ----- Distribution / packaging -----
+*.tar
+*.tar.gz
+*.zip
+
+# ----- IDE / editors -----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ----- Jupyter -----
+.ipynb_checkpoints/
+*.ipynb
+
+# ----- HuggingFace cache (local) -----
+.cache/
+.huggingface/
+~/.cache/huggingface/
+
+# ----- pytest / coverage -----
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ----- Misc -----
+*.bak
+*.tmp
+.env
+.env.local

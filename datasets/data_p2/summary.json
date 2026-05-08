@@ -1,0 +1,8 @@
+{
+  "name": "data_p2",
+  "images_total": 10000,
+  "images_train": 9000,
+  "images_val": 1000,
+  "train_total": 36000,
+  "val_total": 4000
+}

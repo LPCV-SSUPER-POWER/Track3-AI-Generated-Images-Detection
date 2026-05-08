@@ -1,0 +1,36 @@
+calib:
+  calibration_dataset_path: PLACEHOLDER_AUTO_SET_BY_RUN_LLM
+  image_dataset_path: <COCO_CALIB_ROOT_PARENT>
+  name: json
+  ppl_evaluation_dataset_path: PLACEHOLDER_AUTO_SET_BY_RUN_LLM
+  vision_input_size:
+  - 640
+  - 640
+model:
+  ARN: 1073
+  cache_dir: cache_dir
+  context_length: 2048
+  htp_config_file: <aimet_common_dir>/quantsim_config/htp_quantsim_config_v79.json
+  layer_clamp_0_prefill_mask: 30
+  layer_clamp_16_prefill_mask: 5
+  mask_neg: -100
+  model_id: PLACEHOLDER_AUTO_SET_BY_RUN_LLM
+  name: qwen2_vl_2b
+  qk_clamp:
+  - k_min_max_val:
+    - -11
+    - 10
+    layer_idx: 0
+    q_min_max_val:
+    - -15
+    - 15
+  - k_min_max_val:
+    - -5
+    - 3.198410987854004
+    layer_idx: 16
+    q_min_max_val:
+    - -10
+    - 15
+output_dir: PLACEHOLDER_AUTO_SET_BY_RUN_LLM
+profiling:
+  qk_layer: false

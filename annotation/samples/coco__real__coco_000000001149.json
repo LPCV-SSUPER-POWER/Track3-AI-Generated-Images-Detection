@@ -1,0 +1,59 @@
+{
+  "per_criterion": [
+    {
+      "criterion": "Lighting & Shadows Consistency",
+      "evidence": "The lighting appears to be consistent with indoor artificial lighting, which is common in large exhibition halls or military facilities. There are no harsh shadows that would suggest an outdoor setting.",
+      "aigc score": 0
+    },
+    {
+      "criterion": "Edges & Boundaries",
+      "evidence": "The edges of objects and people in the image appear sharp and well-defined. There are no visible artifacts or blurring that would suggest digital manipulation.",
+      "aigc score": 0
+    },
+    {
+      "criterion": "Texture & Resolution",
+      "evidence": "The textures of the military uniforms, the suits, and the objects on display (like the missiles) are detailed and realistic. The resolution appears high enough to capture fine details without any pixelation or loss of clarity, which is typical for professional photography.",
+      "aigc score": 0
+    },
+    {
+      "criterion": "Perspective & Spatial Relationships",
+      "evidence": "The perspective looks accurate. The people and objects appear to be positioned as one would expect in such a setting. The alignment of the individuals and the items they are interacting with seems logical.",
+      "aigc score": 0
+    },
+    {
+      "criterion": "Physical & Common Sense Logic",
+      "evidence": "The setting appears to be an indoor exhibition or a military event, as indicated by the presence of military personnel in uniform and civilians in business attire. The individuals' postures and behaviors are natural and consistent with human interaction.",
+      "aigc score": 0
+    },
+    {
+      "criterion": "Text & Symbols",
+      "evidence": "The text on the ordnance is clear and legible, suggesting that it is part of a real demonstration or exhibit rather than a staged or fictional scene. The symbols and markings on the ordnance are consistent with those found on real military equipment.",
+      "aigc score": 0
+    },
+    {
+      "criterion": "Human & Biological Structure Integrity",
+      "evidence": "The individuals' postures and behaviors are natural and consistent with human interaction. There are no obvious signs of digital manipulation or distortion in their physical appearance.",
+      "aigc score": 0
+    },
+    {
+      "criterion": "Material & Object Details",
+      "evidence": "The objects displayed, such as the missiles, have a level of detail that suggests they are actual models rather than simple props. The markings and labels on them are legible and consistent with what one might see on real military equipment.",
+      "aigc score": 0
+    }
+  ],
+  "overall_likelihood": "Real",
+  "_meta": {
+    "image_id": "coco_000000001149",
+    "image_path": "<SHARED_DATASETS_ROOT>/coco/train2017/000000001149.jpg",
+    "label": "real",
+    "source": "coco",
+    "generator": "camera",
+    "a_step1_responses": [
+      "To determine whether the image is real or fake, we can analyze it based on the three aspects you've mentioned:\n\n1. **Edge & Boundary Integrity**:\n   - The edges of objects and people in the image appear sharp and well-defined. There are no visible artifacts or blurring that would suggest digital manipulation.\n   - The boundaries between different elements (e.g., the区分 between the military uniforms and the suits) are clear and consistent with what one would expect from a real photograph.\n\n2. **Texture & Resolution Coherence**:\n   - The textures of the military uniforms, the suits, and the objects on display (like the missiles) are detailed and realistic. The materials look like they could be made of genuine fabric and metal.\n   - The resolution appears high enough to capture fine details without any pixelation or loss of clarity, which is typical for professional photography.\n\n3. **Material & Object Detail Fidelity**:\n   - The objects displayed, such as the missiles, have a level of detail that suggests they are actual models rather than simple props. The markings and labels on them are legible and consistent with what one might see on real military equipment.\n   - The people in the image also show realistic features and clothing that align with the context of a military or official event.\n\nBased on these observations, the image appears to be real. The sharpness, detail, and coherence across all three aspects strongly suggest that this is a photograph taken at an actual event, likely involving military personnel and officials. There are no obvious signs of digital alteration or forgery.",
+      "To determine whether the image is real or fake, let's analyze it step-by-step based on the provided aspects:\n\n### 1. Physical & Common Sense Logic:\n- **Setting**: The setting appears to be an indoor exhibition or a military event, as indicated by the presence of military personnel in uniform and civilians in business attire.\n- **Objects**: The objects displayed appear to be military ordnance, including missiles and bombs, which are typically used for training or demonstration purposes at such events.\n- **People**: The individuals in the image seem to be engaged in a discussion, which is common at exhibitions or briefings. Their body language suggests they are explaining something, possibly related to the ordnance.\n\n### 2. Text & Symbol Authenticity:\n- **Text on Objects**: The text on the ordnance is clear and legible, suggesting that it is part of a real demonstration or exhibit rather than a staged or fictional scene.\n- **Symbols**: The symbols and markings on the ordnance are consistent with those found on real military equipment, further supporting the authenticity of the objects.\n\n### 3. Human & Biological Structure Integrity:\n- **Posture & Behavior**: The individuals' postures and behaviors are natural and consistent with human interaction. There are no obvious signs of digital manipulation or distortion in their physical appearance.\n- **Clothing**: The uniforms and suits worn by the individuals are appropriate for a military or professional setting, and there are no signs of artificial enhancement or alteration.\n\n### Conclusion:\nBased on the analysis of the physical setting, the authenticity of the objects, and the integrity of the human figures, the image appears to be real. It likely depicts a genuine event where military personnel are demonstrating or discussing ordnance at a public or private exhibition.",
+      "To determine whether the image is real or fake, let's analyze it step-by-step based on the provided aspects:\n\n### 1. **Lighting & Shadow Consistency**\n- **Lighting**: The lighting appears to be consistent with indoor artificial lighting, which is common in large exhibition halls or military facilities. There are no harsh shadows that would suggest an outdoor setting.\n- **Shadow Consistency**: Shadows are present but not overly dramatic. They seem to follow the natural direction of the light source, which is typical for indoor environments.\n\n### 2. **Perspective & Spatial Accuracy**\n- **Perspective**: The perspective looks accurate. The people and objects appear to be positioned as one would expect in such a setting. The alignment of the individuals and the items they are interacting with seems logical.\n- **Spatial Accuracy**: The spatial arrangement of the people and objects is realistic. The spacing between individuals and the placement of the equipment on tables aligns well with what one would expect in a display area.\n\n### Conclusion:\nBased on the analysis of the lighting and shadow consistency, as well as the perspective and spatial accuracy, the image appears to be real. The elements within the image are consistent with what one might expect to see at a military exhibition or similar event. There are no obvious signs of digital manipulation or inconsistencies that would suggest the image is fake."
+    ],
+    "elapsed_sec": 7.1,
+    "annotation_model": "Qwen2.5-VL-7B-Instruct"
+  }
+}

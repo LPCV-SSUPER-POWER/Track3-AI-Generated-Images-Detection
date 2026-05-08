@@ -1,0 +1,9 @@
+{
+  "name": "data_p4",
+  "total_selected": 9000,
+  "train": 8104,
+  "val": 896,
+  "max_token_count": 500,
+  "min_token_count": 287,
+  "avg_token_count": 435.75
+}
