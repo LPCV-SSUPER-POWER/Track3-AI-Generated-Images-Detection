@@ -8,21 +8,21 @@ Summary of **4 conda environments + external models + external data + environmen
 
 | Env | Domain | Machine | Python | requirements |
 |---|---|---|---|---|
-| **`26lpcv_annotate`** | annotation | Leader (RTX 5090) | 3.10 | [`requirements/26lpcv_annotate_requirements.txt`](../requirements/26lpcv_annotate_requirements.txt) |
-| **`26lpcv`** (Leader) | train | Leader (RTX 5090) | 3.10 | [`requirements/26lpcv_requirements.txt`](../requirements/26lpcv_requirements.txt) |
-| **`26lpcv`** (A100) | quantize (AIMET) | A100 (80GB) | 3.10 | [`requirements/26lpcv_aimet_requirements.txt`](../requirements/26lpcv_aimet_requirements.txt) |
-| **`26lpcv_qnn`** | quantize (QNN) | A100 (80GB) | 3.10 | [`requirements/26lpcv_qnn_requirements.txt`](../requirements/26lpcv_qnn_requirements.txt) |
+| **`26lpcv_annotate`** | annotation | training machine | 3.10 | [`requirements/26lpcv_annotate_requirements.txt`](../requirements/26lpcv_annotate_requirements.txt) |
+| **`26lpcv`** (training) | train | training machine | 3.10 | [`requirements/26lpcv_requirements.txt`](../requirements/26lpcv_requirements.txt) |
+| **`26lpcv`** (quantize machine) | quantize (AIMET) | quantize machine (GPU 80GB) | 3.10 | [`requirements/26lpcv_aimet_requirements.txt`](../requirements/26lpcv_aimet_requirements.txt) |
+| **`26lpcv_qnn`** | quantize (QNN) | quantize machine (GPU 80GB) | 3.10 | [`requirements/26lpcv_qnn_requirements.txt`](../requirements/26lpcv_qnn_requirements.txt) |
 
-> Leader's `26lpcv` and A100's `26lpcv` share the **same name but have different packages** (e.g. torch version). Quantization uses torch 1.13.1 (A100, AIMET pro 1.34 compatible), train uses newer torch 2.10 (Leader).
+> training-side `26lpcv` and quantize-side `26lpcv` share the **same name but have different packages** (e.g. torch version). Quantization uses torch 1.13.1 (quantize machine, AIMET pro 1.34 compatible), train uses newer torch 2.10 (training).
 
 ---
 
 ## Domain-wise Flow
 
 ```
-[annotation domain]                          [train domain]                         [quantize domain, A100]
+[annotation domain]                          [train domain]                         [quantize domain, quantize machine]
   Qwen2.5-VL-7B inference                      Qwen2-VL-2B + LLaMA-Factory             AIMET W4A16 + QNN export
-  └── 26lpcv_annotate                          └── 26lpcv (Leader)                     ├── 26lpcv (A100)   — Example1A/1B + cosine
+  └── 26lpcv_annotate                          └── 26lpcv (training)                     ├── 26lpcv (quantize machine)   — Example1A/1B + cosine
                                                                                        └── 26lpcv_qnn       — Example2A/2B
        ↓ output                                     ↓ output                               ↓ output
   datasets/data_p1~4/{train,val}.jsonl       merged_p4 (= FINAL_RESULTS)             submit/{exp_name}.zip
@@ -53,7 +53,7 @@ pip install -r requirements/26lpcv_annotate_requirements.txt
 
 ---
 
-## Env 2 — `26lpcv` (train domain, Leader)
+## Env 2 — `26lpcv` (train domain, training machine)
 
 **Key packages**:
 - `torch==2.10.0+cu128`
@@ -78,7 +78,7 @@ pip install -r requirements/26lpcv_requirements.txt
 
 ---
 
-## Env 3 — `26lpcv` (quantize AIMET, A100)
+## Env 3 — `26lpcv` (quantize AIMET, quantize machine)
 
 **Key packages**:
 - `torch==1.13.1` (1.13 for AIMET 1.34 compatibility)
@@ -91,7 +91,7 @@ pip install -r requirements/26lpcv_requirements.txt
 
 **Install**:
 ```bash
-# On A100 machine
+# On quantize machine
 conda create -n 26lpcv python=3.10 -y
 conda activate 26lpcv
 pip install -r requirements/26lpcv_aimet_requirements.txt
@@ -104,7 +104,7 @@ pip install /path/to/AimetCommon-1.34.0.0.207.0.44+torch.gpu.pt113-cp310-cp310-l
 pip install /path/to/AimetTorch-1.34.0.0.207.0.44+torch.gpu.pt113-cp310-cp310-linux_x86_64.whl
 ```
 
-**Usage locations** (A100 only):
+**Usage locations** (quantize machine only):
 - `quantize/py_files/Example1A/run_veg.py` (VEG AIMET quantize)
 - `quantize/py_files/Example1B/run_llm.py` (LLM AIMET quantize)
 - `quantize/scripts/package_submission.py`
@@ -113,7 +113,7 @@ pip install /path/to/AimetTorch-1.34.0.0.207.0.44+torch.gpu.pt113-cp310-cp310-li
 
 ---
 
-## Env 4 — `26lpcv_qnn` (quantize QNN, A100)
+## Env 4 — `26lpcv_qnn` (quantize QNN, quantize machine)
 
 **Key packages**:
 - `torch==1.13.1`
@@ -124,7 +124,7 @@ pip install /path/to/AimetTorch-1.34.0.0.207.0.44+torch.gpu.pt113-cp310-cp310-li
 
 **Install**:
 ```bash
-# On A100 machine
+# On quantize machine
 conda create -n 26lpcv_qnn python=3.10 -y
 conda activate 26lpcv_qnn
 pip install -r requirements/26lpcv_qnn_requirements.txt
@@ -133,7 +133,7 @@ pip install -r requirements/26lpcv_qnn_requirements.txt
 pip install /path/to/Aimet*.whl /path/to/AimetCommon*.whl /path/to/AimetTorch*.whl
 ```
 
-**Usage locations** (A100 only):
+**Usage locations** (quantize machine only):
 - `quantize/py_files/Example2A/host_linux/run_qnn_veg.py` (QNN VEG export)
 - `quantize/py_files/Example2B/host_linux/run_qnn_llm.py` (QNN LLM export)
 
@@ -142,7 +142,7 @@ pip install /path/to/Aimet*.whl /path/to/AimetCommon*.whl /path/to/AimetTorch*.w
 ## Qualcomm AI Stack (qairt) Install — quantize domain only
 
 ```bash
-# A100 machine
+# quantize machine
 # Download qairt 2.31.0.250130 from Qualcomm Developer Network
 # Install location: /opt/qcom/aistack/qairt/2.31.0.250130/
 ```
@@ -162,7 +162,7 @@ LD_LIBRARY_PATH=/opt/qcom/aistack/qairt/2.31.0.250130/lib/x86_64-linux-clang
 | Model | Use | dtype | Used in |
 |---|---|---|---|
 | `Qwen/Qwen2.5-VL-7B-Instruct` | annotation (Step 1 inference) | fp16 | 26lpcv_annotate |
-| `Qwen/Qwen2-VL-2B-Instruct` | train P1 base + tokenizer (token fit) | bf16 | 26lpcv (Leader), 26lpcv_annotate |
+| `Qwen/Qwen2-VL-2B-Instruct` | train P1 base + tokenizer (token fit) | bf16 | 26lpcv (training), 26lpcv_annotate |
 
 **Download**:
 ```bash
@@ -203,7 +203,7 @@ Image inputs for annotation Step 1 + train P1/P2/P3. **Not bundled in this repo,
 ├── ImageNet/train/
 └── coco/train2017/
 
-/{VEG_CALIB_ROOT}/                    (quantize calibration only, A100)
+/{VEG_CALIB_ROOT}/                    (quantize calibration only, quantize machine)
 └── coco/train2017/                   (100 images only, e.g. <COCO_TRAIN2017_ROOT>/)
 ```
 
@@ -263,28 +263,28 @@ The image paths in LLaVA JSON are relative like `coco/train2017/...`. The `image
 | Domain | Env | External model | External data | qairt SDK |
 |---|---|---|---|---|
 | annotation | 26lpcv_annotate | Qwen2.5-VL-7B-Instruct, Qwen2-VL-2B-Instruct | image set | — |
-| train | 26lpcv (Leader) | Qwen2-VL-2B-Instruct | image set + datasets/data_p?/ | — |
-| quantize (AIMET) | 26lpcv (A100) | merged_p4 (FINAL_RESULTS) | LLaVA JSON (bundled) + COCO 100 | qairt 2.31.0.250130 |
-| quantize (QNN) | 26lpcv_qnn (A100) | merged_p4 | (same as above) | qairt 2.31.0.250130 |
+| train | 26lpcv (training) | Qwen2-VL-2B-Instruct | image set + datasets/data_p?/ | — |
+| quantize (AIMET) | 26lpcv (quantize machine) | merged_p4 (FINAL_RESULTS) | LLaVA JSON (bundled) + COCO 100 | qairt 2.31.0.250130 |
+| quantize (QNN) | 26lpcv_qnn (quantize machine) | merged_p4 | (same as above) | qairt 2.31.0.250130 |
 
 ---
 
 ## Quick Start (Full Pipeline)
 
 ```bash
-# [Leader] annotation
+# [training machine] annotation
 conda activate 26lpcv_annotate
 python annotation/inference/annotate.py --list_json {your_list}.json \
   --output_dir annotations/0421_data --batch_size 32
 
-# [Leader] train
+# [training machine] train
 conda activate 26lpcv
 PROJECT_IMAGE_ROOT=/path/to/track3_images \
 SHARED_DATASETS_ROOT=/path/to/datasets \
 ./train/run.sh
 
-# [A100] quantize
-ssh -p <PORT> <USER>@<A100_HOST>
+# [quantize machine] quantize
+ssh -p <PORT> <USER>@<quantize machine_HOST>
 cp -r {merged_p4} ./models/qwen2_FINAL_RESULTS_merged_stage2
 conda activate 26lpcv
 nohup bash quantize/run_parallel_quantize_pyfiles.sh qwen2_FINAL_RESULTS 0 1 \

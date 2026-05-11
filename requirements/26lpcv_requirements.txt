@@ -1,11 +1,12 @@
-# 26lpcv environment (train 영역, Leader)
-# - Machine: Leader (RTX 5090)
+# 26lpcv environment (train domain, training machine)
+# - Machine: training machine
 # - Python: 3.10.20
-# - 사용처: train_p1/p2/merge_p1/p2 + LLaMA-Factory P3/P4 학습/병합
-# - 설치: conda create -n 26lpcv python=3.10
-#         conda activate 26lpcv
-#         pip install -r 26lpcv_requirements.txt
-# - 양자화 (A100) 의 26lpcv 와 다름 (torch 버전 다름 — A100 은 torch 1.13.1)
+# - Used by: train_p1/p2/merge_p1/p2 + LLaMA-Factory P3/P4 train/merge
+# - Install: conda create -n 26lpcv python=3.10
+#            conda activate 26lpcv
+#            pip install -r 26lpcv_requirements.txt
+# - Different from the quantize-machine 26lpcv (torch version differs;
+#   quantize machine uses torch 1.13.1)
 
 accelerate==1.0.1
 aiofiles==23.2.1

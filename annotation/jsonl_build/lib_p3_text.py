@@ -247,8 +247,8 @@ def write_jsonl(path, rows):
 
 def main():
     parser = argparse.ArgumentParser(description="Build P3 single-prompt image+evidence dataset")
-    # NOTE: 이 모듈은 build_p234_jsonl.py 가 import 해서 함수만 사용함.
-    # 아래 standalone main() 인자는 직접 실행 시에만 의미. default 옛 path 제거.
+    # NOTE: This module is imported by build_p234_jsonl.py for its helper functions.
+    # The standalone main() args below only apply when running this module directly.
     parser.add_argument("--annotation_dirs", nargs="+", required=True)
     parser.add_argument("--a_step1_prompt", required=True)
     parser.add_argument("--output_dir", required=True)

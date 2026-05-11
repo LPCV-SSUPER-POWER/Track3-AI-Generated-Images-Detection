@@ -131,7 +131,7 @@ def main():
     ARNs = [1, 128]
     EXPORT_AR = 1073
     EXPORT_CONTEXT_LENGTH = 2048
-    # onnx_name은 Example1B에서 생성된 파일명과 일치해야 함
+    # onnx_name must match the filename produced by Example1B
     model_name = args.exp_name.lower().replace(".", "p").replace("-", "_") + "_merged_stage2"
     onnx_name = f"{model_name}_AR{EXPORT_AR}"
     num_splits = 1
@@ -542,7 +542,7 @@ def main():
 if __name__ == "__main__":
     main()
 
-    # 최종 산출물을 results/ 디렉토리로 복사
+    # Copy final artifacts to the results/ directory
     import os, shutil, glob, sys
     # Self-contained ROOT detection (env BUNDLE_ROOT or auto from script location)
     BUNDLE_ROOT = os.environ.get('BUNDLE_ROOT') or os.path.abspath(

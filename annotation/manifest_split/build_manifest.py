@@ -8,7 +8,7 @@ The source directory is expected to contain flat JSON annotation files such as:
 
 Usage:
   python build_manifest.py \
-    --input_dir <annotations/data 같은 raw annotation pool 경로>
+    --input_dir <path to raw annotation pool, e.g. annotations/data>
 """
 
 from __future__ import annotations

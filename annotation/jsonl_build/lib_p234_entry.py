@@ -263,8 +263,8 @@ def make_p3p4_entries(image_path, annotation, a_step2_prompt: str | None = None)
 
 
 def main():
-    # NOTE: 이 모듈은 build_p234_jsonl.py 가 import 해서 함수만 사용함.
-    # 아래 standalone main() 의 인자는 직접 실행 시에만 의미.
+    # NOTE: This module is imported by build_p234_jsonl.py for its helper functions.
+    # The standalone main() args below only apply when running this module directly.
     parser = argparse.ArgumentParser(description="PoC: Generate SFT data from VLM annotations")
     parser.add_argument("--annotation_dir", required=True)
     parser.add_argument("--sample_dir", required=True)

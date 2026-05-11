@@ -1,10 +1,10 @@
-# 26lpcv_annotate environment (annotation 영역)
-# - Machine: Leader (RTX 5090)
+# 26lpcv_annotate environment (annotation domain)
+# - Machine: training machine
 # - Python: 3.10.20
-# - 사용처: annotate.py (Qwen2.5-VL-7B inference) + manifest_split + jsonl_build
-# - 설치: conda create -n 26lpcv_annotate python=3.10
-#         conda activate 26lpcv_annotate
-#         pip install -r 26lpcv_annotate_requirements.txt
+# - Used by: annotate.py (Qwen2.5-VL-7B inference) + manifest_split + jsonl_build
+# - Install: conda create -n 26lpcv_annotate python=3.10
+#            conda activate 26lpcv_annotate
+#            pip install -r 26lpcv_annotate_requirements.txt
 
 accelerate==1.13.0
 annotated-doc==0.0.4

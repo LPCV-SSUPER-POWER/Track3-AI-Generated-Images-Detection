@@ -2,7 +2,7 @@
 
 `train_kor.md` 의 결과물 (`FINAL_RESULTS` = `merged_p4`) 를 받아 **AIMET W4A16 양자화 + QNN binary export + 제출용 zip 패키징** 하는 절차. 산출물은 `submit/{exp_name}.zip` (~2.62 GB).
 
-A100 + AIMET v2 (qairt) 환경 필요. annotation/train 은 일반 ML 환경에서 가능하지만, quantize 는 **Qualcomm AI Stack** (`/opt/qcom/aistack/qairt/`) 가 깔린 머신에서만 실행 가능.
+quantize machine + AIMET v2 (qairt) 환경 필요. annotation/train 은 일반 ML 환경에서 가능하지만, quantize 는 **Qualcomm AI Stack** (`/opt/qcom/aistack/qairt/`) 가 깔린 머신에서만 실행 가능.
 
 ---
 
@@ -280,8 +280,8 @@ chmod +x run_parallel_quantize_pyfiles_a.sh
 ### 환경 (자세한 건 `environment_kor.md`)
 | 구성 | 위치 / 비고 |
 |---|---|
-| AIMET Python env | conda env `26lpcv` (A100, torch 1.13.1, AIMET 1.34) — `requirements/26lpcv_aimet_requirements.txt` |
-| QNN Python env | conda env `26lpcv_qnn` (A100) — `requirements/26lpcv_qnn_requirements.txt` |
+| AIMET Python env | conda env `26lpcv` (quantize machine, torch 1.13.1, AIMET 1.34) — `requirements/26lpcv_aimet_requirements.txt` |
+| QNN Python env | conda env `26lpcv_qnn` (quantize machine) — `requirements/26lpcv_qnn_requirements.txt` |
 | AIMET v2 (qairt) | `/opt/qcom/aistack/qairt/2.31.0.250130/` — Qualcomm AI Stack (별도 다운로드) |
 | AIMET pro 1.34 wheel | Aimet/AimetCommon/AimetTorch — 별도 wheel 설치 (`environment_kor.md` 참조) |
 

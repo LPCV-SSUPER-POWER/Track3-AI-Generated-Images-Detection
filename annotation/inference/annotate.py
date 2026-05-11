@@ -1,12 +1,12 @@
 """
-이미지 리스트 JSON으로부터 annotation 생성 (배치 버전).
+Generate annotations from an image-list JSON (batched).
 
-annotation pipeline 의 Step 1 (annotate) 메인 코드.
-이미지 1장당 Qwen2.5-VL 에 4번 질문:
-  a_step1: 이미지 + prompt 3번 (A_STEP1_PROMPTS + FAKE_HINT, 코드 안 hardcoded)
-  a_step2: 텍스트만 1번, per_criterion JSON 합성 (prompts/a_step2.txt)
+Step 1 (annotate) main script of the annotation pipeline.
+For each image, Qwen2.5-VL is asked 4 times:
+  a_step1: image + prompt x 3 (A_STEP1_PROMPTS + FAKE_HINT, hardcoded in this file)
+  a_step2: text-only x 1, per_criterion JSON synthesis (prompts/a_step2.txt)
 
-출력: raw annotation JSON 1개 per 이미지.
+Output: one raw annotation JSON per image.
 """
 import argparse
 import json

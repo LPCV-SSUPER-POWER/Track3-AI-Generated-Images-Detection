@@ -8,21 +8,21 @@ bundle 의 3 영역 (`annotations_kor.md`, `train_kor.md`, `quantize_kor.md`) �
 
 | 환경 | 영역 | 머신 | Python | requirements |
 |---|---|---|---|---|
-| **`26lpcv_annotate`** | annotation | Leader (RTX 5090) | 3.10 | [`requirements/26lpcv_annotate_requirements.txt`](../requirements/26lpcv_annotate_requirements.txt) |
-| **`26lpcv`** (Leader) | train | Leader (RTX 5090) | 3.10 | [`requirements/26lpcv_requirements.txt`](../requirements/26lpcv_requirements.txt) |
-| **`26lpcv`** (A100) | quantize (AIMET) | A100 (80GB) | 3.10 | [`requirements/26lpcv_aimet_requirements.txt`](../requirements/26lpcv_aimet_requirements.txt) |
-| **`26lpcv_qnn`** | quantize (QNN) | A100 (80GB) | 3.10 | [`requirements/26lpcv_qnn_requirements.txt`](../requirements/26lpcv_qnn_requirements.txt) |
+| **`26lpcv_annotate`** | annotation | training machine | 3.10 | [`requirements/26lpcv_annotate_requirements.txt`](../requirements/26lpcv_annotate_requirements.txt) |
+| **`26lpcv`** (training) | train | training machine | 3.10 | [`requirements/26lpcv_requirements.txt`](../requirements/26lpcv_requirements.txt) |
+| **`26lpcv`** (quantize machine) | quantize (AIMET) | quantize machine (GPU 80GB) | 3.10 | [`requirements/26lpcv_aimet_requirements.txt`](../requirements/26lpcv_aimet_requirements.txt) |
+| **`26lpcv_qnn`** | quantize (QNN) | quantize machine (GPU 80GB) | 3.10 | [`requirements/26lpcv_qnn_requirements.txt`](../requirements/26lpcv_qnn_requirements.txt) |
 
-> Leader 와 A100 의 `26lpcv` 는 **이름 동일 / 패키지 다름** (torch 버전 등). 양자화는 AIMET pro 1.34 와 호환되는 torch 1.13.1 사용 (A100), train 은 새 torch 2.10 (Leader).
+> training machine 와 quantize 머신의 `26lpcv` 는 **이름 동일 / 패키지 다름** (torch 버전 등). 양자화는 AIMET pro 1.34 와 호환되는 torch 1.13.1 사용 (quantize machine), train 은 새 torch 2.10 (training).
 
 ---
 
 ## 영역별 사용 흐름
 
 ```
-[annotation 영역]                            [train 영역]                           [quantize 영역, A100]
+[annotation 영역]                            [train 영역]                           [quantize 영역, quantize machine]
   Qwen2.5-VL-7B inference                      Qwen2-VL-2B + LLaMA-Factory             AIMET W4A16 + QNN export
-  └── 26lpcv_annotate                          └── 26lpcv (Leader)                     ├── 26lpcv (A100)   — Example1A/1B + cosine
+  └── 26lpcv_annotate                          └── 26lpcv (training)                     ├── 26lpcv (quantize machine)   — Example1A/1B + cosine
                                                                                        └── 26lpcv_qnn       — Example2A/2B
        ↓ 출력                                       ↓ 출력                                  ↓ 출력
   datasets/data_p1~4/{train,val}.jsonl       merged_p4 (= FINAL_RESULTS)             submit/{exp_name}.zip
@@ -53,7 +53,7 @@ pip install -r requirements/26lpcv_annotate_requirements.txt
 
 ---
 
-## 환경 2 — `26lpcv` (train 영역, Leader)
+## 환경 2 — `26lpcv` (train 영역, training machine)
 
 **핵심 패키지**:
 - `torch==2.10.0+cu128`
@@ -78,7 +78,7 @@ pip install -r requirements/26lpcv_requirements.txt
 
 ---
 
-## 환경 3 — `26lpcv` (quantize AIMET, A100)
+## 환경 3 — `26lpcv` (quantize AIMET, quantize machine)
 
 **핵심 패키지**:
 - `torch==1.13.1` (AIMET 1.34 호환 위해 1.13)
@@ -91,7 +91,7 @@ pip install -r requirements/26lpcv_requirements.txt
 
 **설치**:
 ```bash
-# A100 머신에서
+# quantize 머신에서
 conda create -n 26lpcv python=3.10 -y
 conda activate 26lpcv
 pip install -r requirements/26lpcv_aimet_requirements.txt
@@ -104,7 +104,7 @@ pip install /path/to/AimetCommon-1.34.0.0.207.0.44+torch.gpu.pt113-cp310-cp310-l
 pip install /path/to/AimetTorch-1.34.0.0.207.0.44+torch.gpu.pt113-cp310-cp310-linux_x86_64.whl
 ```
 
-**사용 위치** (A100 만):
+**사용 위치** (quantize machine 만):
 - `quantize/py_files/Example1A/run_veg.py` (VEG AIMET quantize)
 - `quantize/py_files/Example1B/run_llm.py` (LLM AIMET quantize)
 - `quantize/scripts/package_submission.py`
@@ -113,7 +113,7 @@ pip install /path/to/AimetTorch-1.34.0.0.207.0.44+torch.gpu.pt113-cp310-cp310-li
 
 ---
 
-## 환경 4 — `26lpcv_qnn` (quantize QNN, A100)
+## 환경 4 — `26lpcv_qnn` (quantize QNN, quantize machine)
 
 **핵심 패키지**:
 - `torch==1.13.1`
@@ -124,7 +124,7 @@ pip install /path/to/AimetTorch-1.34.0.0.207.0.44+torch.gpu.pt113-cp310-cp310-li
 
 **설치**:
 ```bash
-# A100 머신에서
+# quantize 머신에서
 conda create -n 26lpcv_qnn python=3.10 -y
 conda activate 26lpcv_qnn
 pip install -r requirements/26lpcv_qnn_requirements.txt
@@ -133,7 +133,7 @@ pip install -r requirements/26lpcv_qnn_requirements.txt
 pip install /path/to/Aimet*.whl /path/to/AimetCommon*.whl /path/to/AimetTorch*.whl
 ```
 
-**사용 위치** (A100 만):
+**사용 위치** (quantize machine 만):
 - `quantize/py_files/Example2A/host_linux/run_qnn_veg.py` (QNN VEG export)
 - `quantize/py_files/Example2B/host_linux/run_qnn_llm.py` (QNN LLM export)
 
@@ -142,7 +142,7 @@ pip install /path/to/Aimet*.whl /path/to/AimetCommon*.whl /path/to/AimetTorch*.w
 ## Qualcomm AI Stack (qairt) 설치 — quantize 영역만
 
 ```bash
-# A100 머신
+# quantize 머신
 # Qualcomm Developer Network 에서 qairt 2.31.0.250130 다운로드
 # 설치 위치: /opt/qcom/aistack/qairt/2.31.0.250130/
 ```
@@ -162,7 +162,7 @@ LD_LIBRARY_PATH=/opt/qcom/aistack/qairt/2.31.0.250130/lib/x86_64-linux-clang
 | 모델 | 용도 | dtype | 사용 환경 |
 |---|---|---|---|
 | `Qwen/Qwen2.5-VL-7B-Instruct` | annotation (Step 1 inference) | fp16 | 26lpcv_annotate |
-| `Qwen/Qwen2-VL-2B-Instruct` | train P1 base + tokenizer (token fit) | bf16 | 26lpcv (Leader), 26lpcv_annotate |
+| `Qwen/Qwen2-VL-2B-Instruct` | train P1 base + tokenizer (token fit) | bf16 | 26lpcv (training), 26lpcv_annotate |
 
 **다운로드**:
 ```bash
@@ -203,7 +203,7 @@ annotation Step 1 + train P1/P2/P3 의 이미지 입력. **bundle 에 미동봉,
 ├── ImageNet/train/
 └── coco/train2017/
 
-/{VEG_CALIB_ROOT}/                    (양자화 calibration 만, A100)
+/{VEG_CALIB_ROOT}/                    (양자화 calibration 만, quantize machine)
 └── coco/train2017/                   (100장만, e.g. <COCO_TRAIN2017_ROOT>/)
 ```
 
@@ -263,28 +263,28 @@ LLaVA JSON 안 image path 는 `coco/train2017/...` 같이 상대경로. 학습 �
 | 영역 | 환경 | 외부 모델 | 외부 데이터 | qairt SDK |
 |---|---|---|---|---|
 | annotation | 26lpcv_annotate | Qwen2.5-VL-7B-Instruct, Qwen2-VL-2B-Instruct | image set | — |
-| train | 26lpcv (Leader) | Qwen2-VL-2B-Instruct | image set + datasets/data_p?/ | — |
-| quantize (AIMET) | 26lpcv (A100) | merged_p4 (FINAL_RESULTS) | LLaVA JSON (동봉) + COCO 100장 | qairt 2.31.0.250130 |
-| quantize (QNN) | 26lpcv_qnn (A100) | merged_p4 | (위와 동일) | qairt 2.31.0.250130 |
+| train | 26lpcv (training) | Qwen2-VL-2B-Instruct | image set + datasets/data_p?/ | — |
+| quantize (AIMET) | 26lpcv (quantize machine) | merged_p4 (FINAL_RESULTS) | LLaVA JSON (동봉) + COCO 100장 | qairt 2.31.0.250130 |
+| quantize (QNN) | 26lpcv_qnn (quantize machine) | merged_p4 | (위와 동일) | qairt 2.31.0.250130 |
 
 ---
 
 ## 빠른 시작 (전체 파이프라인)
 
 ```bash
-# [Leader] annotation
+# [training machine] annotation
 conda activate 26lpcv_annotate
 python annotation/inference/annotate.py --list_json {your_list}.json \
   --output_dir annotations/0421_data --batch_size 32
 
-# [Leader] train
+# [training machine] train
 conda activate 26lpcv
 PROJECT_IMAGE_ROOT=/path/to/track3_images \
 SHARED_DATASETS_ROOT=/path/to/datasets \
 ./train/run.sh
 
-# [A100] quantize
-ssh -p <PORT> <USER>@<A100_HOST>
+# [quantize machine] quantize
+ssh -p <PORT> <USER>@<quantize machine_HOST>
 cp -r {merged_p4} ./models/qwen2_FINAL_RESULTS_merged_stage2
 conda activate 26lpcv
 nohup bash quantize/run_parallel_quantize_pyfiles.sh qwen2_FINAL_RESULTS 0 1 \

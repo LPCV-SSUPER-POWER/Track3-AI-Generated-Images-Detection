@@ -286,7 +286,7 @@ def main():
     # In[ ]:
 
 
-    # VisualEmbeddingGenerator는 모듈 최상위에 정의됨 (pickle 호환)
+    # VisualEmbeddingGenerator is defined at module top level (for pickle compatibility)
 
 
     veg = VisualEmbeddingGenerator(model_adapted, grid_thw.to(device), pixel_values.shape[0], device, torch_dtype).to(device)

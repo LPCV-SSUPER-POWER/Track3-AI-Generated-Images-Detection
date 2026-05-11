@@ -2,7 +2,7 @@
 
 Procedure for receiving the output of `train_en.md` (`FINAL_RESULTS` = `merged_p4`) and performing **AIMET W4A16 quantization + QNN binary export + submission zip packaging**. Output: `submit/{exp_name}.zip` (~2.62 GB).
 
-Requires A100 + AIMET v2 (qairt) environment. Annotation/train can run on a generic ML environment, but quantize requires a machine with the **Qualcomm AI Stack** (`/opt/qcom/aistack/qairt/`) installed.
+Requires quantize machine + AIMET v2 (qairt) environment. Annotation/train can run on a generic ML environment, but quantize requires a machine with the **Qualcomm AI Stack** (`/opt/qcom/aistack/qairt/`) installed.
 
 ---
 
@@ -280,8 +280,8 @@ chmod +x run_parallel_quantize_pyfiles_a.sh
 ### Environment (see `environment_en.md` for details)
 | Component | Location / Note |
 |---|---|
-| AIMET Python env | conda env `26lpcv` (A100, torch 1.13.1, AIMET 1.34) — `requirements/26lpcv_aimet_requirements.txt` |
-| QNN Python env | conda env `26lpcv_qnn` (A100) — `requirements/26lpcv_qnn_requirements.txt` |
+| AIMET Python env | conda env `26lpcv` (quantize machine, torch 1.13.1, AIMET 1.34) — `requirements/26lpcv_aimet_requirements.txt` |
+| QNN Python env | conda env `26lpcv_qnn` (quantize machine) — `requirements/26lpcv_qnn_requirements.txt` |
 | AIMET v2 (qairt) | `/opt/qcom/aistack/qairt/2.31.0.250130/` — Qualcomm AI Stack (separate download) |
 | AIMET pro 1.34 wheel | Aimet/AimetCommon/AimetTorch — separate wheel install (see `environment_en.md`) |
 

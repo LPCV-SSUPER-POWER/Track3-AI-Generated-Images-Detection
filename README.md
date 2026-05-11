@@ -90,10 +90,10 @@ raw images
 │   └── py_files/                           AIMET vanilla code (Example1A/1B/2A/2B + local_data)
 │
 └── requirements/
-    ├── 26lpcv_annotate_requirements.txt    (annotation, Leader, transformers 5.5.3)
-    ├── 26lpcv_requirements.txt             (train, Leader, torch 2.10)
-    ├── 26lpcv_aimet_requirements.txt       (quantize AIMET, A100, torch 1.13.1)
-    └── 26lpcv_qnn_requirements.txt         (quantize QNN, A100)
+    ├── 26lpcv_annotate_requirements.txt    (annotation, training machine, transformers 5.5.3)
+    ├── 26lpcv_requirements.txt             (train, training machine, torch 2.10)
+    ├── 26lpcv_aimet_requirements.txt       (quantize AIMET, quantize machine, torch 1.13.1)
+    └── 26lpcv_qnn_requirements.txt         (quantize QNN, quantize machine)
 ```
 
 ---
@@ -103,17 +103,17 @@ raw images
 ### 1) Install environments (4 conda envs — see [environment_en.md](md/environment_en.md))
 
 ```bash
-# Annotation env (Leader)
+# Annotation env (training)
 conda create -n 26lpcv_annotate python=3.10 -y
 conda activate 26lpcv_annotate
 pip install -r requirements/26lpcv_annotate_requirements.txt
 
-# Train env (Leader)
+# Train env (training)
 conda create -n 26lpcv python=3.10 -y
 conda activate 26lpcv
 pip install -r requirements/26lpcv_requirements.txt
 
-# Quantize envs (A100, requires Qualcomm AI Stack qairt 2.31)
+# Quantize envs (quantize machine, requires Qualcomm AI Stack qairt 2.31)
 # ... (separate AIMET wheel install — see environment_en.md)
 ```
 
@@ -125,7 +125,7 @@ pip install -r requirements/26lpcv_requirements.txt
 ### 3) Run pipeline
 
 ```bash
-# === Stage 1: Annotation (Leader) ===
+# === Stage 1: Annotation (training) ===
 conda activate 26lpcv_annotate
 python annotation/inference/annotate.py \
     --list_json {your_image_list}.json \
@@ -133,14 +133,14 @@ python annotation/inference/annotate.py \
     --batch_size 32
 # (See md/annotations_en.md for Step 2 manifest + Step 3 jsonl builders)
 
-# === Stage 2: Train (Leader) ===
+# === Stage 2: Train (training) ===
 conda activate 26lpcv
 PROJECT_ROOT=/path/to/track3_images \
 SHARED_DATASETS_ROOT=/path/to/datasets \
 ./train/run.sh
 # Output: merged_p4 (= FINAL_RESULTS)
 
-# === Stage 3: Quantize (A100) ===
+# === Stage 3: Quantize (quantize machine) ===
 conda activate 26lpcv
 EXP=qwen2_FINAL_RESULTS
 PYTHON_LPCV=$(which python) \

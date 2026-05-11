@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""패키징 완료 후 zip 검증 (sed로 'py_files' → '$EXP' 치환 후 실행됨)"""
+"""Post-packaging zip verification (executed after wrapper does 'py_files' -> '$EXP' substitution via sed)."""
 import os
 import zipfile
 import json
 from pathlib import Path
 
-# Self-contained ROOT detection. wrapper가 BUNDLE_ROOT를 export 하면
-# /tmp 에 sed-치환 복사본으로 실행되어도 그대로 작동.
+# Self-contained ROOT detection. When the wrapper exports BUNDLE_ROOT,
+# this still works even when executed from a sed-substituted copy in /tmp.
 QUANT_ROOT = Path(__file__).resolve().parent
 BUNDLE_ROOT = Path(os.environ.get("BUNDLE_ROOT", str(QUANT_ROOT.parent)))
 
@@ -15,7 +15,7 @@ results = str(BUNDLE_ROOT / "results" / "py_files")
 
 all_ok = True
 
-print("=== 1. zip 파일 목록 ===")
+print("=== 1. zip file listing ===")
 with zipfile.ZipFile(zip_path, "r") as zf:
     for info in zf.infolist():
         mb = info.file_size / 1024 / 1024
@@ -26,7 +26,7 @@ with zipfile.ZipFile(zip_path, "r") as zf:
                 "embedding_weights", "tokenizer.json", "inputs.json",
                 "veg.serialized.bin", "weight_sharing_model"]
     print()
-    print("=== 2. 필수 파일 존재 ===")
+    print("=== 2. required files present ===")
     for req in required:
         found = any(req in n for n in names)
         label = "OK" if found else "MISSING"
@@ -35,7 +35,7 @@ with zipfile.ZipFile(zip_path, "r") as zf:
         print(f"  {req}: {label}")
 
     print()
-    print("=== 3. 원본 대비 크기 일치 ===")
+    print("=== 3. size match vs original ===")
     checks = [
         ("SSUPER POWER/mask.raw", f"{results}/Example1A/veg_exports/mask.raw"),
         ("SSUPER POWER/embedding_weights_151936x1536.raw", f"{results}/Example1B/embedding_weights_151936x1536.raw"),
@@ -54,7 +54,7 @@ with zipfile.ZipFile(zip_path, "r") as zf:
         print(f"  {short}: zip={zip_info.file_size} orig={orig_size} [{label}]")
 
     print()
-    print("=== 4. inputs.json 내용 ===")
+    print("=== 4. inputs.json contents ===")
     with zf.open("SSUPER POWER/inputs.json") as f:
         inp = json.load(f)
     print(f"  embedding_dim: {inp.get('run_veg_embedding_dim')}")
@@ -69,7 +69,7 @@ with zipfile.ZipFile(zip_path, "r") as zf:
     print(f"  eos-token: {ctx.get('eos-token')}")
 
 print()
-print("=== 5. zip CRC 검증 ===")
+print("=== 5. zip CRC check ===")
 with zipfile.ZipFile(zip_path, "r") as zf:
     result = zf.testzip()
     if result is None:

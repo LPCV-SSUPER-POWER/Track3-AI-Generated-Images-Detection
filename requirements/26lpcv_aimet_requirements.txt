@@ -1,18 +1,19 @@
-# 26lpcv environment (quantize AIMET 영역, A100)
-# - Machine: A100 (<A100_HOST>:<PORT>)
+# 26lpcv environment (quantize AIMET domain, quantize machine)
+# - Machine: quantize machine (<QUANTIZE_HOST>:<PORT>)
 # - Python: 3.10.20
-# - 사용처: quantize/py_files/Example1A/run_veg.py, Example1B/run_llm.py
-#         + scripts/package_submission.py + verify_zip.py + inference/llm_inout.py + inference_multi.py
-# - 설치: conda create -n 26lpcv python=3.10
-#         conda activate 26lpcv
-#         pip install -r 26lpcv_aimet_requirements.txt
-#         (그 후 AIMET wheel 별도 설치 — environment.md 참조)
-# - 같은 환경에 Qualcomm AIMET pro 1.34.0 (file URL 주석 처리됨, 별도 wheel 설치 필요)
+# - Used by: quantize/py_files/Example1A/run_veg.py, Example1B/run_llm.py
+#            + scripts/package_submission.py + verify_zip.py + inference/llm_inout.py + inference_multi.py
+# - Install: conda create -n 26lpcv python=3.10
+#            conda activate 26lpcv
+#            pip install -r 26lpcv_aimet_requirements.txt
+#            (then install AIMET wheel separately — see environment.md)
+# - The Qualcomm AIMET pro 1.34.0 wheel is required (file URLs commented out below;
+#   install the wheel separately)
 
 accelerate==1.0.1
-# Aimet==1.34.0.0.207.0.44+torch.gpu.pt113   # AIMET pro wheel — environment.md 참조 (별도 다운로드)
-# AimetCommon==1.34.0.0.207.0.44+torch.gpu.pt113   # AIMET pro wheel — environment.md 참조 (별도 다운로드)
-# AimetTorch==1.34.0.0.207.0.44+torch.gpu.pt113   # AIMET pro wheel — environment.md 참조 (별도 다운로드)
+# Aimet==1.34.0.0.207.0.44+torch.gpu.pt113   # AIMET pro wheel — see environment.md (download separately)
+# AimetCommon==1.34.0.0.207.0.44+torch.gpu.pt113   # AIMET pro wheel — see environment.md (download separately)
+# AimetTorch==1.34.0.0.207.0.44+torch.gpu.pt113   # AIMET pro wheel — see environment.md (download separately)
 aiofiles==23.2.1
 aiohappyeyeballs==2.6.1
 aiohttp==3.13.4

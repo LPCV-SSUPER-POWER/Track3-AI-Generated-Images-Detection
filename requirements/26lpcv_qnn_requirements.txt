@@ -1,18 +1,19 @@
-# 26lpcv_qnn environment (quantize QNN 영역, A100)
-# - Machine: A100 (<A100_HOST>:<PORT>)
+# 26lpcv_qnn environment (quantize QNN domain, quantize machine)
+# - Machine: quantize machine (<QUANTIZE_HOST>:<PORT>)
 # - Python: 3.10.20
-# - 사용처: quantize/py_files/Example2A/host_linux/run_qnn_veg.py
-#         + Example2B/host_linux/run_qnn_llm.py (QNN binary export)
-# - 설치: conda create -n 26lpcv_qnn python=3.10
-#         conda activate 26lpcv_qnn
-#         pip install -r 26lpcv_qnn_requirements.txt
-#         (그 후 AIMET wheel 별도 설치 — environment.md 참조)
-# - Qualcomm AI Stack (qairt 2.31.0.250130) PATH/LD_LIBRARY_PATH 설정 필요 (run_*.sh 가 자동 설정)
+# - Used by: quantize/py_files/Example2A/host_linux/run_qnn_veg.py
+#            + Example2B/host_linux/run_qnn_llm.py (QNN binary export)
+# - Install: conda create -n 26lpcv_qnn python=3.10
+#            conda activate 26lpcv_qnn
+#            pip install -r 26lpcv_qnn_requirements.txt
+#            (then install AIMET wheel separately — see environment.md)
+# - Requires Qualcomm AI Stack (qairt 2.31.0.250130) on PATH/LD_LIBRARY_PATH
+#   (run_*.sh sets this automatically)
 
 accelerate==1.0.1
-# Aimet==1.34.0.0.207.0.44+torch.gpu.pt113   # AIMET pro wheel — environment.md 참조 (별도 다운로드)
-# AimetCommon==1.34.0.0.207.0.44+torch.gpu.pt113   # AIMET pro wheel — environment.md 참조 (별도 다운로드)
-# AimetTorch==1.34.0.0.207.0.44+torch.gpu.pt113   # AIMET pro wheel — environment.md 참조 (별도 다운로드)
+# Aimet==1.34.0.0.207.0.44+torch.gpu.pt113   # AIMET pro wheel — see environment.md (download separately)
+# AimetCommon==1.34.0.0.207.0.44+torch.gpu.pt113   # AIMET pro wheel — see environment.md (download separately)
+# AimetTorch==1.34.0.0.207.0.44+torch.gpu.pt113   # AIMET pro wheel — see environment.md (download separately)
 aiofiles==23.2.1
 aiohappyeyeballs==2.6.1
 aiohttp==3.13.4

@@ -16,8 +16,8 @@ from pathlib import Path
 from lib_p234_entry import make_sft_entries
 
 
-# NOTE: SAMPLE_DIR 은 standalone main() 의 sample 이미지 검색용. import 시 사용 안 함.
-# 사용자가 standalone 실행 시 환경변수로 override 가능.
+# NOTE: SAMPLE_DIR is used only by the standalone main() for sample image lookup; not used on import.
+# Override via DATA_ROOT env var when running standalone.
 import os as _os
 ROOT = Path(_os.environ.get("DATA_ROOT", _os.path.dirname(_os.path.abspath(__file__))))
 SAMPLE_DIR = ROOT / "datasets/raw/sample dataset"
@@ -141,8 +141,8 @@ def write_jsonl(path, entries):
 
 
 def main():
-    # NOTE: 이 모듈은 build_p234_jsonl.py 가 import 해서 함수만 사용함.
-    # 아래 standalone main() 인자는 직접 실행 시에만 의미.
+    # NOTE: This module is imported by build_p234_jsonl.py for its helper functions.
+    # The standalone main() args below only apply when running this module directly.
     parser = argparse.ArgumentParser(description="Build SFT data from sample-50 + 1K VLM + 5K template annotations")
     parser.add_argument("--annotation_dir", action="append", required=True)
     parser.add_argument("--output_dir", required=True)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Build P1 학습 entry (Step 3 of annotation pipeline).
+Build P1 training entries (Step 3 of annotation pipeline).
 
 Reads split folder:
 - annotations/data_p1   (raw annotation JSON, hardlink from master pool)
@@ -8,8 +8,8 @@ Reads split folder:
 Writes ShareGPT-style JSONL:
 - datasets/data_p1/{train,val}.jsonl
 
-P2/P3/P4 는 build_p234_jsonl.py 가 담당. 이 스크립트는 P1 만 처리.
-단독 작동 (라이브러리 import 0개).
+P2/P3/P4 are handled by build_p234_jsonl.py. This script only processes P1.
+Standalone (0 library imports).
 """
 
 from __future__ import annotations
@@ -480,7 +480,7 @@ def main() -> None:
         "p3": annotations_root / "data_p3",
         "p4": annotations_root / "data_p4",
     }
-    # P1 만 정리본 datasets/ 에서 사용. P2/P3/P4 sft 는 안 만듦 (build_p234_jsonl.py 가 처리).
+    # Only P1 is generated here; P2/P3/P4 are produced by build_p234_jsonl.py.
     output_dirs = {
         "p1": datasets_root / "data_p1",
     }
@@ -502,7 +502,7 @@ def main() -> None:
     annotation_cache = {path: load_annotation_by_path(Path(path)) for path in sorted(all_paths)}
 
     final_summary = {}
-    for stage in ["p1"]:  # P1 만 처리 (P2/P3/P4 는 build_p234_jsonl.py)
+    for stage in ["p1"]:  # P1 only; P2/P3/P4 are handled by build_p234_jsonl.py
         out_dir = output_dirs[stage]
         ensure_output_dir(out_dir, args.force)
 
