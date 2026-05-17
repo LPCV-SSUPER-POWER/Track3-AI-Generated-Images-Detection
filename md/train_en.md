@@ -157,7 +157,7 @@ LLAMA=/path/to/llamafactory-cli \
 
 ## Per-Stage Details
 
-### P1 — base SFT (custom trainer)
+### P1 — base detector warm-up (custom 2-loss trainer)
 
 | Item | Value |
 |---|---|
@@ -165,7 +165,8 @@ LLAMA=/path/to/llamafactory-cli \
 | Trainer | `scripts/train_p1.py` (custom) |
 | Base | `Qwen/Qwen2-VL-2B-Instruct` |
 | Output | `lora_p1` → merge → `merged_p1` |
-| Loss | token CE (sft single-prompt classification) |
+| Loss | `1.0 × token CE (short-schema NLL) + 2.0 × overall BCE` — 2-loss combined (`lambda_schema=1.0`, `lambda_overall=2.0`). The overall BCE comes from a binary classifier head on pooled vision embeddings; this head is **discarded after training** (only the LoRA delta is merged). |
+| Vision tower | **unfrozen** — P1 LoRA also adapts ViT modules (`qkv`, `attn.proj`, `fc1`, `fc2`); P1 has no `freeze_vision_tower`. (P2/P3/P4 all set `freeze_vision_tower: true`.) |
 | Data | 60k images, fake/real 50:50 |
 
 ### P2 — multi-prompt base (custom + aux BCE)
@@ -176,7 +177,8 @@ LLAMA=/path/to/llamafactory-cli \
 | Trainer | `scripts/train_p2.py` (custom + auxiliary BCE) |
 | Base | `merged_p1` |
 | Output | `lora_p2` → merge → `merged_p2` |
-| Loss | **token CE + overall BCE + criterion BCE** (3 losses combined) |
+| Loss | **`1.0 × token CE + 0.1 × overall BCE + 0.05 × criterion BCE`** — 3 losses combined (`lambda_tok=1.0`, `lambda_overall=0.1`, `lambda_criterion=0.05`; `use_overall_loss=true`, `use_criterion_loss=true`). Both aux heads are discarded after training (only LoRA merged). |
+| Vision tower | frozen (`freeze_vision_tower: true`) |
 | Data | 10k images × 4 entry = 36k entries (multi-prompt) |
 
 ### P3 — image+evidence LoRA (LLaMA-Factory)
