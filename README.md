@@ -13,7 +13,8 @@
 - Task: AI-generated image detection on edge devices
 - Hardware: Snapdragon 8 Elite QRD (evaluated via Qualcomm AI Hub cloud)
 - Submission: ~2.62 GB QNN binary (8 files + `SSUPER POWER/` prefix)
-- Page: https://lpcv.ai/
+- Page: https://lpcv.ai/2026LPCVC/winners/
+- Venue: ECV Workshop @ CVPR 2026 — Denver, CO · June 3, 2026
 
 ## Result
 
@@ -192,15 +193,16 @@ If you use this code or build upon our approach, please cite:
 
 ```bibtex
 @misc{ssuper_aigid_2026,
-  title  = {SSUPER-AIGID: AI-Generated Image Detection on Edge Devices},
-  author = {Kil, Dayoung and Kim, Doeon and Lee, Junyoon},
-  year   = {2026},
-  note   = {LPCVC 2026 Track 3, 2nd Place (Team SSUPER POWER)},
-  url    = {https://github.com/LPCV-SSUPER-POWER/Track3-AI-Generated-Images-Detection}
+  title        = {SSUPER-AIGID: AI-Generated Image Detection on Edge Devices},
+  author       = {Kil, Dayoung and Kim, Doeon and Lee, Junyoon},
+  year         = {2026},
+  howpublished = {ECV Workshop at CVPR 2026, Denver, CO},
+  note         = {LPCVC 2026 Track 3, 2nd Place (Team SSUPER POWER) --- presented June 3, 2026},
+  url          = {https://github.com/LPCV-SSUPER-POWER/Track3-AI-Generated-Images-Detection}
 }
 ```
 
-- **LPCVC 2026 — Track 3 (AI-Generated Image Detection on Edge Devices)** — Competition page: https://lpcv.ai/
+- **LPCVC 2026 — Track 3 (AI-Generated Image Detection on Edge Devices)** — Competition page: https://lpcv.ai/2026LPCVC/winners/
 
 ---
 
