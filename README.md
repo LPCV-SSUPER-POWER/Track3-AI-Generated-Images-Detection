@@ -1,6 +1,7 @@
-# LPCVC 2026 Track 3: AI-Generated Image Detection on Edge Devices
+# SSUPER-AIGID
 
-> 🥈 **2nd Place** — LPCVC 2026 Track 3: AI-Generated Image Detection on Edge Devices
+> **S**SUPER POWER's **AI-G**enerated **I**mage **D**etector
+> — LPCVC 2026 Track 3 · 🥈 **2nd Place** · Team **SSUPER POWER**
 > 
 > Qwen2-VL-2B fine-tuning + AIMET W4A16 quantization pipeline targeting Snapdragon 8 Elite QRD.
 
@@ -16,10 +17,11 @@
 
 ## Result
 
-🥈 **2nd Place** — Team **SSUPER POWER**
+🥈 **2nd Place** — Team **SSUPER POWER** · Model **SSUPER-AIGID**
 
 | Metric | Value |
 |---|---|
+| **Model** | **SSUPER-AIGID** (Qwen2-VL-2B, W4A16) |
 | **TPS** (tokens per second) | **31.21** |
 | **Score** | **0.72** |
 
@@ -32,6 +34,8 @@
 ---
 
 ## Approach — 3-Stage Pipeline
+
+**SSUPER-AIGID** is built through a 3-stage pipeline:
 
 ```
 raw images
@@ -184,10 +188,19 @@ This repository is licensed under the **MIT License** (see [LICENSE](LICENSE)) �
 
 ## Citation
 
-If you use this code or build upon our approach, please reference the LPCVC competition:
+If you use this code or build upon our approach, please cite:
 
-- **LPCVC 2026 — Track 3 (AI-Generated Image Detection on Edge Devices)**
-- Competition page: https://lpcv.ai/
+```bibtex
+@misc{ssuper_aigid_2026,
+  title  = {SSUPER-AIGID: AI-Generated Image Detection on Edge Devices},
+  author = {Kil, Dayoung and Kim, Doeon and Lee, Junyoon},
+  year   = {2026},
+  note   = {LPCVC 2026 Track 3, 2nd Place (Team SSUPER POWER)},
+  url    = {https://github.com/LPCV-SSUPER-POWER/Track3-AI-Generated-Images-Detection}
+}
+```
+
+- **LPCVC 2026 — Track 3 (AI-Generated Image Detection on Edge Devices)** — Competition page: https://lpcv.ai/
 
 ---
 
