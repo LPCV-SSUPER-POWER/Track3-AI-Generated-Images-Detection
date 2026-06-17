@@ -13,7 +13,7 @@
 - Task: AI-generated image detection on edge devices
 - Hardware: Snapdragon 8 Elite QRD (evaluated via Qualcomm AI Hub cloud)
 - Submission: ~2.62 GB QNN binary (8 files + `SSUPER POWER/` prefix)
-- Page: [2026LPCVC/winners](https://lpcv.ai/2026LPCVC/winners/0
+- Page: [2026LPCVC/winners](https://lpcv.ai/2026LPCVC/winners/)
 - Venue: ECV Workshop @ CVPR 2026 — Denver, CO · June 3, 2026
 
 ## Result
