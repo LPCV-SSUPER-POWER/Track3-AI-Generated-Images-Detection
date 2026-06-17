@@ -20,6 +20,8 @@
 
 🥈 **2nd Place** — Team **SSUPER POWER** · Model **SSUPER-AIGID**
 
+[🤗 Model weights](https://huggingface.co/Dayoung-space/SSUPER-AIGID)
+
 | Metric | Value |
 |---|---|
 | **Model** | **SSUPER-AIGID** (Qwen2-VL-2B, W4A16) |
